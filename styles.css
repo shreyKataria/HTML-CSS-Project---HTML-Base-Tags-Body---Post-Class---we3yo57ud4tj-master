@@ -63,8 +63,8 @@ section{
 section .content{
     /* transform: translate(opacity .2s ease); */
     opacity: 0;
-    transition: opacity 3s ease;
-    position: fixed;
+    transition: opacity .3s ;
+    /* position: ; */
     width: 100%;
     top: 0;
     padding-top: 15vh ;
