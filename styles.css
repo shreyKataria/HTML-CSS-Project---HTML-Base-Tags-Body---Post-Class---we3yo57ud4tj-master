@@ -3,16 +3,16 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /* scroll-behavior: smooth; */
+    scroll-behavior: smooth;
     outline-offset: 2px;
 }
 body{
     color: #171a20;
     font-family: 'M PLUS 1' , sans-serif;
 }
-html{
+/* html{
     scroll-behavior: smooth;
-}
+} */
 
 .menu{
     display: none;
@@ -61,11 +61,12 @@ section{
 
 }
 section .content{
+    /* transform: translate(opacity .2s ease); */
     opacity: 0;
-    transition: opacity .5s ease;
-    position: absolute;
+    transition: opacity 3s ease;
+    position: fixed;
     width: 100%;
-    /* top: 0; */
+    top: 0;
     padding-top: 15vh ;
     padding-bottom: 15vh;
     height: 100vh;
@@ -74,7 +75,8 @@ section .content{
     grid-template-rows: min-content auto min-content;
 }
 section.apply .content{
-    opacity: 1;}
+    opacity: 1;
+}
 
 
 section h1{
