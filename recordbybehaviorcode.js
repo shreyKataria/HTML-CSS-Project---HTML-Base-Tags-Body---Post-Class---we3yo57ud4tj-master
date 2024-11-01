@@ -1195,10 +1195,10 @@
       errorCount: sessionData.errorCount,
       eventsCount: sessionData.eventsCount,
     };
-    const fetchUrl = "https://behaviourcode.alnakiya.com/postdata";
-    // const localUrl = "http://localhost:3000/postdata"
+    // const fetchUrl = "https://behaviourcode.alnakiya.com/postdata";
+    const localUrl = "http://localhost:3000/postdata"
     // console.log(payload);
-    fetch(fetchUrl, {
+    fetch(localUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
