@@ -7,7 +7,7 @@
   let observer;
   let metricsInterval;
   let sessionData = {
-    userId: 8978,
+    userId: Math.floor(Math.random() * 90 + 10),
     startTime: new Date().toISOString(),
     ipAddress: null,
     browser: navigator.userAgent,
