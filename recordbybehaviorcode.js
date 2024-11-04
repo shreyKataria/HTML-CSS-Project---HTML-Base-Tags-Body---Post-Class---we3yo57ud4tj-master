@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded",
   let metricsInterval;
   let sessionData = {
     userId: 1008,
-    orgId: 27,
-    projId:35,
+    orgId: 29,
+    projId:38,
     startTime: new Date().toISOString(),
     ipAddress: null,
     browser: navigator.userAgent,
