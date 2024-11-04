@@ -500,7 +500,7 @@
       };
       
       console.log('payload posted')
-      fetch("https://debugiq.alnakiya.com/postdata", {
+      fetch("http://localhost:3000/postdata", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
