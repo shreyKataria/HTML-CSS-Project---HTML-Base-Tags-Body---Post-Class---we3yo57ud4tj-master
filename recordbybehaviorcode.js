@@ -1201,7 +1201,7 @@ document.addEventListener("DOMContentLoaded",
       errorCount: sessionData.errorCount,
       eventsCount: sessionData.eventsCount,
     };
-    const payloadSize = JSON.stringify(data).length / (1024 * 1024); // Convert bytes to MB
+    const payloadSize = JSON.stringify(payload).length / (1024 * 1024); // Convert bytes to MB
     console.log(`Payload size: ${payloadSize.toFixed(2)} MB`);
 
     // Check if the payload exceeds 100 MB
