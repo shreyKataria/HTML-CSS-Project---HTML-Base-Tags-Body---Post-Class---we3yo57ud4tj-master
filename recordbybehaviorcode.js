@@ -1,4 +1,5 @@
-(function () {
+document.addEventListener("DOMContentLoaded",
+() =>{
   let eventsArray = [];
   let errorsArray = [];
   let fetchDetailsArray = [];
@@ -8,6 +9,8 @@
   let metricsInterval;
   let sessionData = {
     userId: Math.floor(Math.random() * 90 + 10),
+    orgId: 28,
+    projId:36,
     startTime: new Date().toISOString(),
     ipAddress: null,
     browser: navigator.userAgent,
@@ -1171,6 +1174,8 @@
     sessionData.endTime = new Date().toISOString();
     const payload = {
       User_id: sessionData.userId,
+      orgId: sessionData.orgId,
+      projId:sessionData.projId,
       Start_time: sessionData.startTime,
       Ip_address: sessionData.ipAddress,
       Browser: sessionData.browser,
@@ -1195,10 +1200,10 @@
       errorCount: sessionData.errorCount,
       eventsCount: sessionData.eventsCount,
     };
-    const fetchUrl = "https://behaviourcode.alnakiya.com/postdata";
-    // const localUrl = "http://localhost:3000/postdata"
+    // const fetchUrl = "https://behaviourcode.alnakiya.com/postdata";
+    const localUrl = "http://localhost:3000/postdata"
     // console.log(payload);
-    fetch(fetchUrl, {
+    fetch(localUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -1433,4 +1438,4 @@
   }
 
   startRecording();
-})();
+});
