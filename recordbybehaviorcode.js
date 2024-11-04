@@ -1171,7 +1171,8 @@ document.addEventListener("DOMContentLoaded",
   }
 
   function saveEventsToServer(reason) {
-    sessionData.endTime = new Date().toISOString();
+    // Log the size of the data being sent
+      sessionData.endTime = new Date().toISOString();
     const payload = {
       User_id: sessionData.userId,
       orgId: sessionData.orgId,
@@ -1200,25 +1201,57 @@ document.addEventListener("DOMContentLoaded",
       errorCount: sessionData.errorCount,
       eventsCount: sessionData.eventsCount,
     };
-    // const fetchUrl = "https://behaviourcode.alnakiya.com/postdata";
-    const localUrl = "http://localhost:3000/postdata"
-    // console.log(payload);
-    fetch(localUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+    const payloadSize = JSON.stringify(data).length / (1024 * 1024); // Convert bytes to MB
+    console.log(`Payload size: ${payloadSize.toFixed(2)} MB`);
+
+    // Check if the payload exceeds 100 MB
+    if (payloadSize > 100) {
+        console.error("Payload exceeds 100 MB limit");
+        return; // Prevent sending the request
+    }
+
+    fetch('http://localhost:3000/postdata', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
     })
-      .then((response) => {
+    .then(response => {
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`Network response was not ok : ${response.status}`);
         }
         return response.json();
-      })
-      .then((data) => console.log("Analytics data sent successfully:", data))
-      .catch((error) => {
-        logError(error, { type: "AnalyticsSubmissionError" });
-      });
-  }
+    })
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+  
+  // function saveEventsToServer(reason) {
+  
+  //   // const fetchUrl = "https://behaviourcode.alnakiya.com/postdata";
+  //   const localUrl = "http://localhost:3000/postdata"
+  //   // console.log(payload);
+  //   fetch(localUrl, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(payload),
+  //   })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => console.log("Analytics data sent successfully:", data))
+  //     .catch((error) => {
+  //       logError(error, { type: "AnalyticsSubmissionError" });
+  //     });
+  // }
 
   function clearTimersAndIntervals() {
     if (metricsInterval) clearInterval(metricsInterval);
